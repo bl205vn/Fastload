@@ -8,6 +8,7 @@ import net.minecraft.client.option.CyclingOption;
 import net.minecraft.client.option.DoubleOption;
 import net.minecraft.client.option.Option;
 import net.minecraft.text.StringVisitable;
+import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 
 import java.util.ArrayList;
@@ -42,10 +43,10 @@ public class FLModMenuButtons {
     public static Option getNewBoolButton(String type, boolean getConfig) {
         System.out.println(type + ":" + getConfig);
         addressStorage.putIfAbsent(type, Boolean.toString(getConfig));
-        return CyclingOption.create(
+        return  new CyclingOption(
                 FLB + type,
                 new TranslatableText(FLB + type + ".tooltip"),
-                gameOptions -> getConfig,
+                (gameOptions, cyclingOption) -> getConfig,
                 (gameOptions, option, value) -> storeProperty(type, value.toString())
         );
     }

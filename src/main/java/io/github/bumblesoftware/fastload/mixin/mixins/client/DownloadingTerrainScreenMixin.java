@@ -15,16 +15,17 @@ public class DownloadingTerrainScreenMixin {
 
     //Code is from 'kennytv'. All credits are to this person. This is not our code.
     //Permission granted to do so from MIT License of 'forcecloseloadingscreen'.
-    @Shadow private boolean closeOnNextTick;
+    //@Shadow private boolean closeOnNextTick;
 
     /**
      *  Closes Downloading Terrain Screen ASAP, whilst being safe
      */
-    @Inject(at = @At("HEAD"), method = "setReady")
+    /*@Inject(at = @At("HEAD"), method = "setReady")
     public void tick(final CallbackInfo ci) {
         if (FLMath.getCloseUnsafe() || FLMath.getCloseSafe()) {
             if (FLMath.getDebug()) Fastload.LOGGER.info("DTS will now close on next tick");
             closeOnNextTick = true;
         }
-    }
+    }*/
+
 }

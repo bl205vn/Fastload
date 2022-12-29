@@ -1,18 +1,19 @@
 package io.github.bumblesoftware.fastload.init;
 
 import io.github.bumblesoftware.fastload.config.init.FLConfig;
+import io.netty.util.internal.logging.InternalLogger;
+import io.netty.util.internal.logging.Log4J2LoggerFactory;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 import static io.github.bumblesoftware.fastload.config.init.DefaultConfig.propertyKeys.*;
 import static io.github.bumblesoftware.fastload.config.init.FLMath.*;
 
 public class Fastload implements ModInitializer {
 	public static final String NAMESPACE = "Fastload";
-	public static final Logger LOGGER = LoggerFactory.getLogger(NAMESPACE);
+	public static final InternalLogger LOGGER = Log4J2LoggerFactory.getInstance(NAMESPACE);
 	private static String loggableString(String key) {
 		return key.toUpperCase() + ": ";
 	}

@@ -138,15 +138,15 @@ public final class FLClientHandler {
             }
             assert client.player != null;
             if (oldPitch != null) {
-                getCamera().setRotation(client.player.getYaw(), oldPitch);
-                if (client.player.getPitch() != oldPitch) client.player.setPitch(oldPitch);
+                getCamera().setRotation(client.player.getYaw(1), oldPitch);
+                if (client.player.getPitch(1) != oldPitch) client.player.pitch = oldPitch;
                 oldPitch = null;
             }
             playerJoined = false;
             oldChunkLoadedCountStorage = 0;
             oldChunkBuildCountStorage = 0;
             System.gc();
-            client.setScreen(null);
+            client.openScreen(null);
         }
     }
 
@@ -185,7 +185,7 @@ public final class FLClientHandler {
             if (CLIENT_TIMER.isReady() && eventContext.screen() instanceof GameMenuScreen && !client.windowFocused) {
                 if (getDebug()) log(Integer.toString(CLIENT_TIMER.getTime()));
                 eventContext.ci().cancel();
-                client.setScreen(null);
+                client.openScreen(null);
             }
             return null;
         });
@@ -220,12 +220,12 @@ public final class FLClientHandler {
                     if (getDebug()) log("Goal (Loaded Chunks): " + getPreRenderArea());
                     isBuilding = true;
                     System.gc();
-                    client.setScreen(new BuildingTerrainScreen());
+                    client.openScreen(new BuildingTerrainScreen());
                 } else if (getCloseUnsafe()) {
                     playerJoined = false;
                     if (getDebug()) log("Successfully Skipped Downloading Terrain Screen!");
                     eventContext.ci().cancel();
-                    client.setScreen(null);
+                    client.openScreen(null);
                     CLIENT_TIMER.setTime(20);
                 }
             }
@@ -258,9 +258,9 @@ public final class FLClientHandler {
                     //Sets player to face horizontally to prioritise chunk loading
                     if (client.player != null) {
                         if (oldPitch == null) {
-                            oldPitch = client.player.getPitch();
+                            oldPitch = client.player.getPitch(1);
                         }
-                        client.player.setPitch(0);
+                        client.player.pitch = 0;
                         if (getDebug()) {
                             log("Pitch:" + oldPitch);
                         }

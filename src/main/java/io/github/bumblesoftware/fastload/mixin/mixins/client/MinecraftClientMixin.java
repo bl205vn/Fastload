@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(MinecraftClient.class)
 public class MinecraftClientMixin {
-    @Inject(method = "setScreen", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "openScreen", at = @At("HEAD"), cancellable = true)
     private void setScreenEvent(final Screen screen, final CallbackInfo ci) {
         FLClientEvents.SET_SCREEN_EVENT.fireEvent(new SetScreenEventContext(screen, ci));
     }

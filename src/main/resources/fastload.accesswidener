@@ -3,3 +3,4 @@ accessible    method    net/minecraft/client/render/Camera    setRotation    (FF
 accessible    field    net/minecraft/client/MinecraftClient    windowFocused    Z
 accessible    method    net/minecraft/client/option/Option    getGenericLabel    (Lnet/minecraft/text/Text;)Lnet/minecraft/text/Text;
 accessible    method    net/minecraft/client/option/Option    getGenericLabel    (I)Lnet/minecraft/text/Text;
+accessible    method    net/minecraft/client/render/WorldRenderer    getCompletedChunkCount    ()I
