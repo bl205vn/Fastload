@@ -1,36 +1,30 @@
 package io.github.bumblesoftware.fastload.init;
 
 import io.github.bumblesoftware.fastload.config.init.FLConfig;
+import io.github.bumblesoftware.fastload.util.log.FastloadLogger;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import static io.github.bumblesoftware.fastload.config.init.DefaultConfig.propertyKeys.*;
 import static io.github.bumblesoftware.fastload.config.init.FLMath.*;
 
 public class Fastload implements ModInitializer {
 	public static final String NAMESPACE = "Fastload";
-	public static final Logger LOGGER = LoggerFactory.getLogger(NAMESPACE);
-	private static String loggableString(String key) {
-		return key.toUpperCase() + ": ";
-	}
-	private static String loggableString(String key, String extra) {
-		return key.toUpperCase() + "_" + extra.toUpperCase() + ": ";
-	}
 
 	@Override
 	public void onInitialize() {
 		FLConfig.init();
+		FastloadLogger logger = FastloadLogger.DEFAULT_INSTANCE;
 		if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
-			LOGGER.info(loggableString(tryLimit()) + getChunkTryLimit());
-			LOGGER.info(loggableString(unsafeClose()) + getCloseUnsafe().toString().toUpperCase());
-			LOGGER.info(loggableString(render(true), "radius") + "" + getPreRenderRadius());
-			LOGGER.info(loggableString(render(true), "area") + getPreRenderArea());
+			logger.log(tryLimit(), key -> key.toVar().addSuffix(Integer.toString(getChunkTryLimit()), "").getString().toUpperCase());
+			logger.log(unsafeClose(), key -> key.toVar().addSuffix(Boolean.toString(getCloseUnsafe()), "").getString().toUpperCase());
+			logger.log(render(true), key -> key.addSuffix("radius").toVar().addSuffix(Integer.toString(getPreRenderRadius()), "").getString().toUpperCase());
+			logger.log(render(true), key -> key.addSuffix("area").toVar().addSuffix(Integer.toString(getPreRenderArea()), "").getString().toUpperCase());
+
 		}
-		LOGGER.info(loggableString(debug()) + getDebug().toString().toUpperCase());
-		LOGGER.info(loggableString(pregen(true), "radius") + getPregenRadius(true));
-		LOGGER.info(loggableString(pregen(true), "area") + getPregenArea());
+		logger.log(debug(), key -> key.toVar().addSuffix(Boolean.toString(getDebug()), "").getString().toUpperCase());
+		logger.log(pregen(true), key -> key.addSuffix("radius").toVar().addSuffix(Integer.toString(getPregenRadius(true)), "").getString().toUpperCase());
+		logger.log(pregen(true), key -> key.addSuffix("area").toVar().addSuffix(Integer.toString(getPregenArea()), "").getString().toUpperCase());
 	}
 }

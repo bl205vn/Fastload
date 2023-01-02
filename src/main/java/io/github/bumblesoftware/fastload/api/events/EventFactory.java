@@ -82,7 +82,7 @@ public class EventFactory<T extends Record> {
     }
 
     /**
-     * To fire an event, it must be called with a new record, in order to pass any amount of params without
+     * To fire an event, it must be called with a new record, in order to log any amount of params without
      * requiring to change this method signature. Upon firing, the event will iterate through the registered
      * args in order of priority from highest to lowest. Then iterate through {@link #eventsToRemove} to remove certain events
      * dynamically. Finally, after that's done, {@link #eventsToRemove} will be emptied to save memory.

@@ -2,7 +2,7 @@ package io.github.bumblesoftware.fastload.client;
 
 import io.github.bumblesoftware.fastload.api.events.EventFactory;
 import io.github.bumblesoftware.fastload.config.screen.BuildingTerrainScreen;
-import io.github.bumblesoftware.fastload.init.Fastload;
+import io.github.bumblesoftware.fastload.util.log.FastloadLogger;
 import io.github.bumblesoftware.fastload.util.TickTimer;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.DownloadingTerrainScreen;
@@ -53,7 +53,7 @@ public final class FLClientHandler {
      */
     private static boolean closeBuild = false;
     /**
-     * Stores the old player camera pitch so that it can be set back to it upon completion of preloading
+     * Stores the old player camera pitch so that it can be set addPrefix to it upon completion of preloading
      */
     private static Float oldPitch = null;
     /**
@@ -86,7 +86,7 @@ public final class FLClientHandler {
      *  Quick, easy, and lazy logging method
      */
     public static void log(String toLog) {
-        Fastload.LOGGER.info(toLog);
+        FastloadLogger.DEFAULT_INSTANCE.logger().info(toLog);
     }
 
     /**
@@ -157,13 +157,13 @@ public final class FLClientHandler {
 
         //Player is ready when it initialises
         CLIENT_PLAYER_INIT_EVENT.register(1, (eventContext, abstractEvent, closer, eventArgs) -> {
-            if (getDebug()) Fastload.LOGGER.info("shouldLoad = true");
+            if (getDebug()) log("shouldLoad = true");
             playerReady = true;
             return null;
         });
 
         PLAYER_JOIN_EVENT.register(1, (eventContext, abstractEvent, closer, eventArgs) -> {
-            if (getDebug()) Fastload.LOGGER.info("playerJoined = true");
+            if (getDebug()) log("playerJoined = true");
             FLClientHandler.playerJoined = true;
             return null;
         });
