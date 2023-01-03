@@ -86,7 +86,7 @@ public final class FLClientHandler {
      *  Quick, easy, and lazy logging method.
      */
     public static void log(String toLog) {
-        FL_Logger.DEFAULT_INSTANCE.INFO.withMessage(toLog);
+        FL_Logger.DEFAULT_INSTANCE.INFO.print(toLog);
     }
 
     /**

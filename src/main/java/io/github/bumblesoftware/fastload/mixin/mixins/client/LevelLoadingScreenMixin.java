@@ -15,7 +15,7 @@ public class LevelLoadingScreenMixin {
 
     @ModifyArg(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/LevelLoadingScreen;drawChunkMap(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/gui/WorldGenerationProgressTracker;IIII)V"), index = 3)
     private int drawCorrectedChunkMap1(int centerY) {
-        if (FLMath.getDebug()) FL_Logger.DEFAULT_INSTANCE.INFO.withMessage("Corrected LLS ChunkMap");
+        if (FLMath.getDebug()) FL_Logger.DEFAULT_INSTANCE.INFO.print("Corrected LLS ChunkMap");
         return centerY - 10;
     }
 
@@ -26,7 +26,7 @@ public class LevelLoadingScreenMixin {
 
     @ModifyArg(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/LevelLoadingScreen;drawCenteredText(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;III)V"), index = 4)
     private int drawCorrectedText(int y) {
-        if (FLMath.getDebug()) FL_Logger.DEFAULT_INSTANCE.INFO.withMessage("Corrected LLS Text");
+        if (FLMath.getDebug()) FL_Logger.DEFAULT_INSTANCE.INFO.print("Corrected LLS Text");
         return y - 60;
     }
 }

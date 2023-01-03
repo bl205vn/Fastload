@@ -48,11 +48,11 @@ public class BuildingTerrainScreen extends Screen {
         final String loadedChunksString = getLoadedChunkCount() + "/"  + FLMath.getPreRenderArea();
         final String builtChunksString = getBuiltChunkCount() + "/"  + FLMath.getPreRenderArea() * client.options.getFov().getValue() / 180;
         if (PREPARED_PROGRESS_STORAGE < getLoadedChunkCount())
-            FL_Logger.DEFAULT_INSTANCE.INFO.withMessage(
+            FL_Logger.DEFAULT_INSTANCE.INFO.print(
                     ExtendedString.of("World Chunk Sending").toVar().addSuffix(loadedChunksString).toString()
             );
         if (BUILDING_PROGRESS_STORAGE < getBuiltChunkCount())
-            FL_Logger.DEFAULT_INSTANCE.INFO.withMessage(
+            FL_Logger.DEFAULT_INSTANCE.INFO.print(
                     ExtendedString.of("Visible Chunk Building").toVar().addSuffix(builtChunksString).toString()
             );
         PREPARED_PROGRESS_STORAGE = getLoadedChunkCount();

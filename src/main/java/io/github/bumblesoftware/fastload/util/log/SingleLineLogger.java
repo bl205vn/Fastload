@@ -5,7 +5,7 @@ import org.slf4j.Logger;
 
 /**
  * SingeLineLogger is used to easily print multiple messages in one line. It also supports
- * {@link ExtendedString ExtendedString}.
+ * {@link ExtendedString ExtendedString}. Helps to avoid a bunch of boilerplate code.
  */
 public final class SingleLineLogger {
 
@@ -30,6 +30,11 @@ public final class SingleLineLogger {
     public final MessageContent INFO;
 
     /**
+     * Shouts.
+     */
+    public final MessageContent SHOUT;
+
+    /**
      * Warns log
      */
     public final MessageContent WARN;
@@ -48,11 +53,13 @@ public final class SingleLineLogger {
         DEBUG = logger::debug;
         ERROR = logger::error;
         INFO = logger::info;
+        SHOUT = System.out::println;
         WARN = logger::warn;
         ALL = new MessageContent[] {
                 DEBUG,
                 ERROR,
                 INFO,
+                SHOUT,
                 WARN
         };
     }

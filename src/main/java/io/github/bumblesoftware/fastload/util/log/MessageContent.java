@@ -19,17 +19,17 @@ public interface MessageContent {
      * @param string The message you want to print in form of {@link ExtendedString}
      * @return The current instance to be repeatable.
      */
-    default MessageContent withMessage(ExtendedString string) {
-        return withMessage(string.toString());
+    default MessageContent print(ExtendedString string) {
+        return print(string.toString());
     }
 
     /**
      * @param stringArray A List of messages you want to print in form of {@link ExtendedString}
      * @return The current instance to be repeatable.
      */
-    default MessageContent withMessage(ExtendedString[] stringArray) {
+    default MessageContent print(ExtendedString[] stringArray) {
         for (ExtendedString string : stringArray) {
-            withMessage(string);
+            print(string);
         }
         return this;
     }
@@ -38,9 +38,9 @@ public interface MessageContent {
      * @param stringArray A List of messages you want to print;
      * @return The current instance to be repeatable.
      */
-    default MessageContent withMessage(String[] stringArray) {
+    default MessageContent print(String[] stringArray) {
         for (String string : stringArray) {
-            withMessage(string);
+            print(string);
         }
         return this;
     }
@@ -49,7 +49,7 @@ public interface MessageContent {
      * @param string The message you want to print.
      * @return The current instance to be repeatable.
      */
-    default MessageContent withMessage(String string) {
+    default MessageContent print(String string) {
         execute(string);
         return this;
     }
@@ -59,7 +59,7 @@ public interface MessageContent {
      * @return The current instance of this interface to be able to print multiple lines.
      */
     default MessageContent newLine() {
-        return withMessage("");
+        return print("");
     }
 
 }

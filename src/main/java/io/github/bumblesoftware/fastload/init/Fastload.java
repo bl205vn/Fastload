@@ -18,7 +18,7 @@ public class Fastload implements ModInitializer {
 		FLConfig.init();
 		MessageContent info = FL_Logger.DEFAULT_INSTANCE.INFO;
 		if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
-			info.withMessage(ExtendedString.of(
+			info.print(ExtendedString.of(
 					ExtendedString.of(tryLimit())
 							.toVar()
 							.addSuffix("" + getChunkTryLimit())
@@ -40,7 +40,7 @@ public class Fastload implements ModInitializer {
 			));
 
 		}
-		info.withMessage(ExtendedString.of(
+		info.print(ExtendedString.of(
 				ExtendedString.of(debug())
 						.toVar()
 						.addSuffix("" + getDebug())

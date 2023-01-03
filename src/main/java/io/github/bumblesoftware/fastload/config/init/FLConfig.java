@@ -65,7 +65,7 @@ public class FLConfig {
 
     }
     private static void logError(String key) {
-        FL_Logger.DEFAULT_INSTANCE.ERROR.withMessage(
+        FL_Logger.DEFAULT_INSTANCE.ERROR.print(
                 ExtendedString.of("Failed to parse variable")
                         .addSuffix(key, " '")
                         .addSuffix("in", "' ")

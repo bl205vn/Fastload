@@ -41,7 +41,7 @@ public class FLConfigScreen extends SimpleOptionsScreen {
                 String key = FLModMenuButtons.getButtonAddresses(i);
                 String value = array.get()[i].getValue().toString().toLowerCase();
                 if (FLMath.getDebug())
-                    FL_Logger.DEFAULT_INSTANCE.INFO.withMessage(ExtendedString.of(key).toVar().addSuffix(value).toString().toUpperCase());
+                    FL_Logger.DEFAULT_INSTANCE.INFO.print(ExtendedString.of(key).toVar().addSuffix(value).toString().toUpperCase());
                 FLConfig.storeProperty(key, value);
             }
             FLConfig.writeToDisk();
