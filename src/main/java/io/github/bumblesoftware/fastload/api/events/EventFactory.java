@@ -37,7 +37,7 @@ public class EventFactory<T extends Record> {
     public final EventHolder<T> eventsToRemove = getNewHolder();
 
     /**
-     * This method isn't used by default, This is used if one wants to manage other events
+     * This withMessage isn't used by default, This is used if one wants to manage other events
      * @param identifier used to discriminate
      * @return multiple holders to manage dynamic events
      */
@@ -83,7 +83,7 @@ public class EventFactory<T extends Record> {
 
     /**
      * To fire an event, it must be called with a new record, in order to log any amount of params without
-     * requiring to change this method signature. Upon firing, the event will iterate through the registered
+     * requiring to change this withMessage signature. Upon firing, the event will iterate through the registered
      * args in order of priority from highest to lowest. Then iterate through {@link #eventsToRemove} to remove certain events
      * dynamically. Finally, after that's done, {@link #eventsToRemove} will be emptied to save memory.
      * @param eventContext a new instance of a record with the type of this event.

@@ -1,16 +1,29 @@
 package io.github.bumblesoftware.fastload.util;
 
-@SuppressWarnings("UnusedReturnValue")
+@SuppressWarnings({"UnusedReturnValue", "unused"})
 public class ExtendedString {
     private String key;
 
-    public ExtendedString(String key) {
+    private ExtendedString(String key) {
 
         this.key = key;
     }
 
+    public static ExtendedString of(String key) {
+        return new ExtendedString(key);
+    }
+
     public ExtendedString toVar() {
         this.key = key + ": ";
+        return this;
+    }
+
+    public ExtendedString toUpperCase() {
+        key = key.toUpperCase();
+        return this;
+    }
+    public ExtendedString toLowerCase() {
+        key = key.toLowerCase();
         return this;
     }
 
@@ -19,8 +32,13 @@ public class ExtendedString {
         return this;
     }
 
+    public ExtendedString addPrefix(String prefix, char discriminator) {
+        addPrefix(prefix, String.valueOf(discriminator));
+        return this;
+    }
+
     public ExtendedString addPrefix(String prefix) {
-        addPrefix(prefix, "_");
+        addPrefix(prefix, "");
         return this;
     }
 
@@ -29,12 +47,19 @@ public class ExtendedString {
         return this;
     }
 
-    public ExtendedString addSuffix(String suffix) {
-        addSuffix(suffix, "_");
+    public ExtendedString addSuffix(String suffix, char discriminator) {
+        addSuffix(suffix, String.valueOf(discriminator));
         return this;
     }
 
-    public String getString() {
+    public ExtendedString addSuffix(String suffix) {
+        addSuffix(suffix, "");
+        return this;
+    }
+
+
+    @Override
+    public String toString() {
         return key;
     }
 }

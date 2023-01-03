@@ -2,16 +2,16 @@ package io.github.bumblesoftware.fastload.client;
 
 import io.github.bumblesoftware.fastload.api.events.EventFactory;
 import io.github.bumblesoftware.fastload.config.screen.BuildingTerrainScreen;
-import io.github.bumblesoftware.fastload.util.log.FastloadLogger;
 import io.github.bumblesoftware.fastload.util.TickTimer;
+import io.github.bumblesoftware.fastload.util.log.SingleLineLogger;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.DownloadingTerrainScreen;
 import net.minecraft.client.gui.screen.GameMenuScreen;
 import net.minecraft.client.gui.screen.ProgressScreen;
 import net.minecraft.client.render.Camera;
 
-import static io.github.bumblesoftware.fastload.config.init.FLMath.*;
 import static io.github.bumblesoftware.fastload.client.FLClientEvents.*;
+import static io.github.bumblesoftware.fastload.config.init.FLMath.*;
 
 /**
  * Fastload's client handling, based upon {@link EventFactory DefaultEventFactory}.
@@ -57,12 +57,12 @@ public final class FLClientHandler {
      */
     private static Float oldPitch = null;
     /**
-     * Stores the old count to compare values on the next method call to see if the value
+     * Stores the old count to compare values on the next withMessage call to see if the value
      * of loaded chunks is same.
      */
     private static Integer oldChunkLoadedCountStorage = null;
     /**
-     * Stores the old count to compare values on the next method call to see if the value
+     * Stores the old count to compare values on the next withMessage call to see if the value
      * of built chunks is same.
      */
     private static Integer oldChunkBuildCountStorage = null;
@@ -83,10 +83,10 @@ public final class FLClientHandler {
     }
 
     /**
-     *  Quick, easy, and lazy logging method
+     *  Quick, easy, and lazy logging withMessage
      */
     public static void log(String toLog) {
-        FastloadLogger.DEFAULT_INSTANCE.logger().info(toLog);
+        SingleLineLogger.DEFAULT_INSTANCE.logger().info(toLog);
     }
 
     /**

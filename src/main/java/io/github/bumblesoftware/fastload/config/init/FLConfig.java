@@ -1,10 +1,10 @@
 package io.github.bumblesoftware.fastload.config.init;
 
 import io.github.bumblesoftware.fastload.init.Fastload;
+import io.github.bumblesoftware.fastload.util.ExtendedString;
 import io.github.bumblesoftware.fastload.util.MinMaxHolder;
-import io.github.bumblesoftware.fastload.util.log.FastloadLogger;
+import io.github.bumblesoftware.fastload.util.log.SingleLineLogger;
 import net.fabricmc.loader.api.FabricLoader;
-import org.slf4j.Logger;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -65,15 +65,13 @@ public class FLConfig {
 
     }
     private static void logError(String key) {
-        FastloadLogger.DEFAULT_INSTANCE.log(
-                "Failed to parse variable '",
-                string -> string
-                        .addSuffix(key, "")
-                        .addSuffix("' in ", "")
-                        .addSuffix(Fastload.NAMESPACE, "")
-                        .addSuffix("'s config, generating a new one!", "")
-                        .getString(),
-                Logger::error
+        SingleLineLogger.DEFAULT_INSTANCE.logger().error(
+                ExtendedString.of("Failed to parse variable")
+                        .addSuffix(key, " '")
+                        .addSuffix("in", "' ")
+                        .addSuffix(Fastload.NAMESPACE, " ")
+                        .addSuffix("config, generating a new one!", "'s ")
+                        .toString()
         );
     }
 

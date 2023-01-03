@@ -16,14 +16,14 @@ import static io.github.bumblesoftware.fastload.config.init.FLMath.*;
 
 public class FLModMenuButtons {
     /**
-     *  This just stores the .properties address in order by method call. This is done in order
+     *  This just stores the .properties address in order by withMessage call. This is done in order
      *  to make it safe to iterate through the values in order to write it to disk.
      */
     private static final ArrayList<String> addressStorage = new ArrayList<>();
     private static final String FLB = Fastload.NAMESPACE.toLowerCase() + ".button.";
 
     /**
-     * This method is a thing because it's the only thing other classes would need in order to
+     * This withMessage is a thing because it's the only thing other classes would need in order to
      * iterate through returned values from FLConfigScreen
      */
     public static String getButtonAddresses(int i) {
@@ -31,7 +31,7 @@ public class FLModMenuButtons {
     }
 
     /**
-     * Next 2 method just create the required buttons, nothing really special aside  from the local variables to ensure
+     * Next 2 withMessage just create the required buttons, nothing really special aside  from the local variables to ensure
      * naming convention consistency
      */
     public static SimpleOption<Boolean> getNewBoolButton(String type, boolean getConfig) {

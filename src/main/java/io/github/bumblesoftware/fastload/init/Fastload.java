@@ -1,13 +1,16 @@
 package io.github.bumblesoftware.fastload.init;
 
 import io.github.bumblesoftware.fastload.config.init.FLConfig;
-import io.github.bumblesoftware.fastload.util.log.FastloadLogger;
+import io.github.bumblesoftware.fastload.util.log.MessageContent;
+import io.github.bumblesoftware.fastload.util.log.SingleLineLogger;
+import io.github.bumblesoftware.fastload.util.log.Types;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 
 import static io.github.bumblesoftware.fastload.config.init.DefaultConfig.propertyKeys.*;
 import static io.github.bumblesoftware.fastload.config.init.FLMath.*;
+import static io.github.bumblesoftware.fastload.util.ExtendedString.of;
 
 public class Fastload implements ModInitializer {
 	public static final String NAMESPACE = "Fastload";
@@ -15,16 +18,48 @@ public class Fastload implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		FLConfig.init();
-		FastloadLogger logger = FastloadLogger.DEFAULT_INSTANCE;
+		MessageContent info = SingleLineLogger.DEFAULT_INSTANCE.ofType(Types.INFO);
 		if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
-			logger.log(tryLimit(), key -> key.toVar().addSuffix(Integer.toString(getChunkTryLimit()), "").getString().toUpperCase());
-			logger.log(unsafeClose(), key -> key.toVar().addSuffix(Boolean.toString(getCloseUnsafe()), "").getString().toUpperCase());
-			logger.log(render(true), key -> key.addSuffix("radius").toVar().addSuffix(Integer.toString(getPreRenderRadius()), "").getString().toUpperCase());
-			logger.log(render(true), key -> key.addSuffix("area").toVar().addSuffix(Integer.toString(getPreRenderArea()), "").getString().toUpperCase());
+			info	.withMessage(of(tryLimit())
+							.toVar()
+							.addSuffix("" + getChunkTryLimit())
+							.toUpperCase()
+					)
+					.withMessage(of(unsafeClose())
+							.toVar()
+							.addSuffix("" + getCloseUnsafe())
+							.toUpperCase()
+					)
+					.withMessage(of(render(true))
+							.addSuffix("radius", "_")
+							.toVar()
+							.addSuffix("" + getPreRenderRadius())
+							.toUpperCase()
+					)
+					.withMessage(of(render(true))
+							.addSuffix("area", "_")
+							.toVar()
+							.addSuffix("" + getPreRenderArea())
+							.toUpperCase()
+					);
 
 		}
-		logger.log(debug(), key -> key.toVar().addSuffix(Boolean.toString(getDebug()), "").getString().toUpperCase());
-		logger.log(pregen(true), key -> key.addSuffix("radius").toVar().addSuffix(Integer.toString(getPregenRadius(true)), "").getString().toUpperCase());
-		logger.log(pregen(true), key -> key.addSuffix("area").toVar().addSuffix(Integer.toString(getPregenArea()), "").getString().toUpperCase());
+		info	.withMessage(of(debug())
+						.toVar()
+						.addSuffix("" + getDebug())
+						.toUpperCase()
+				)
+				.withMessage(of(pregen())
+						.addSuffix("radius", "_")
+						.toVar()
+						.addSuffix("" + getPregenRadius(true))
+						.toUpperCase()
+				)
+				.withMessage(of(pregen())
+						.addSuffix("area", "_")
+						.toVar()
+						.addSuffix("" + getPreRenderArea())
+						.toUpperCase()
+				);
 	}
 }
