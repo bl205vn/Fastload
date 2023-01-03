@@ -1,5 +1,6 @@
 package io.github.bumblesoftware.fastload.util;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,7 +9,6 @@ public final class ExtendedString {
     private String key;
 
     private ExtendedString(String key) {
-
         this.key = key;
     }
 
@@ -18,6 +18,16 @@ public final class ExtendedString {
 
     public static ExtendedString[] of(ExtendedString... key) {
         return key;
+    }
+
+    public static ExtendedString[] of(List<String> list) {
+        ArrayList<ExtendedString> arrayList = new ArrayList<>();
+        int length = 0;
+        for (String string : list) {
+            arrayList.add(ExtendedString.of(string));
+            length++;
+        }
+        return arrayList.toArray(new ExtendedString[length]);
     }
 
     public static List<ExtendedString> of(String[] key) {
