@@ -1,7 +1,10 @@
 package io.github.bumblesoftware.fastload.util;
 
+import java.util.LinkedList;
+import java.util.List;
+
 @SuppressWarnings({"UnusedReturnValue", "unused"})
-public class ExtendedString {
+public final class ExtendedString {
     private String key;
 
     private ExtendedString(String key) {
@@ -13,6 +16,18 @@ public class ExtendedString {
         return new ExtendedString(key);
     }
 
+    public static ExtendedString[] of(ExtendedString... key) {
+        return key;
+    }
+
+    public static List<ExtendedString> of(String[] key) {
+        List<ExtendedString> list = new LinkedList<>();
+        for (String string : key) {
+            list.add(new ExtendedString(string));
+        }
+        return list;
+    }
+
     public ExtendedString toVar() {
         this.key = key + ": ";
         return this;
@@ -22,6 +37,7 @@ public class ExtendedString {
         key = key.toUpperCase();
         return this;
     }
+
     public ExtendedString toLowerCase() {
         key = key.toLowerCase();
         return this;
@@ -56,7 +72,6 @@ public class ExtendedString {
         addSuffix(suffix, "");
         return this;
     }
-
 
     @Override
     public String toString() {

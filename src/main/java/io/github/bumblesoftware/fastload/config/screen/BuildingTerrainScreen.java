@@ -2,7 +2,7 @@ package io.github.bumblesoftware.fastload.config.screen;
 
 import io.github.bumblesoftware.fastload.config.init.FLMath;
 import io.github.bumblesoftware.fastload.util.ExtendedString;
-import io.github.bumblesoftware.fastload.util.log.SingleLineLogger;
+import io.github.bumblesoftware.fastload.init.FL_Logger;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.screen.Screen;
@@ -48,11 +48,11 @@ public class BuildingTerrainScreen extends Screen {
         final String loadedChunksString = getLoadedChunkCount() + "/"  + FLMath.getPreRenderArea();
         final String builtChunksString = getBuiltChunkCount() + "/"  + FLMath.getPreRenderArea() * client.options.getFov().getValue() / 180;
         if (PREPARED_PROGRESS_STORAGE < getLoadedChunkCount())
-            SingleLineLogger.DEFAULT_INSTANCE.logger().info(
+            FL_Logger.DEFAULT_INSTANCE.INFO.withMessage(
                     ExtendedString.of("World Chunk Sending").toVar().addSuffix(loadedChunksString).toString()
             );
         if (BUILDING_PROGRESS_STORAGE < getBuiltChunkCount())
-            SingleLineLogger.DEFAULT_INSTANCE.logger().info(
+            FL_Logger.DEFAULT_INSTANCE.INFO.withMessage(
                     ExtendedString.of("Visible Chunk Building").toVar().addSuffix(builtChunksString).toString()
             );
         PREPARED_PROGRESS_STORAGE = getLoadedChunkCount();

@@ -3,7 +3,7 @@ package io.github.bumblesoftware.fastload.client;
 import io.github.bumblesoftware.fastload.api.events.EventFactory;
 import io.github.bumblesoftware.fastload.config.screen.BuildingTerrainScreen;
 import io.github.bumblesoftware.fastload.util.TickTimer;
-import io.github.bumblesoftware.fastload.util.log.SingleLineLogger;
+import io.github.bumblesoftware.fastload.init.FL_Logger;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.DownloadingTerrainScreen;
 import net.minecraft.client.gui.screen.GameMenuScreen;
@@ -86,7 +86,7 @@ public final class FLClientHandler {
      *  Quick, easy, and lazy logging method.
      */
     public static void log(String toLog) {
-        SingleLineLogger.DEFAULT_INSTANCE.logger().info(toLog);
+        FL_Logger.DEFAULT_INSTANCE.INFO.withMessage(toLog);
     }
 
     /**

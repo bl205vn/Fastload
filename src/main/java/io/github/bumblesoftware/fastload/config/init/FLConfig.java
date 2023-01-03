@@ -3,7 +3,7 @@ package io.github.bumblesoftware.fastload.config.init;
 import io.github.bumblesoftware.fastload.init.Fastload;
 import io.github.bumblesoftware.fastload.util.ExtendedString;
 import io.github.bumblesoftware.fastload.util.MinMaxHolder;
-import io.github.bumblesoftware.fastload.util.log.SingleLineLogger;
+import io.github.bumblesoftware.fastload.init.FL_Logger;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.BufferedWriter;
@@ -65,7 +65,7 @@ public class FLConfig {
 
     }
     private static void logError(String key) {
-        SingleLineLogger.DEFAULT_INSTANCE.logger().error(
+        FL_Logger.DEFAULT_INSTANCE.ERROR.withMessage(
                 ExtendedString.of("Failed to parse variable")
                         .addSuffix(key, " '")
                         .addSuffix("in", "' ")
