@@ -57,12 +57,12 @@ public final class FLClientHandler {
      */
     private static Float oldPitch = null;
     /**
-     * Stores the old count to compare values on the next withMessage call to see if the value
+     * Stores the old count to compare values on the next method call to see if the value
      * of loaded chunks is same.
      */
     private static Integer oldChunkLoadedCountStorage = null;
     /**
-     * Stores the old count to compare values on the next withMessage call to see if the value
+     * Stores the old count to compare values on the next method call to see if the value
      * of built chunks is same.
      */
     private static Integer oldChunkBuildCountStorage = null;
@@ -83,7 +83,7 @@ public final class FLClientHandler {
     }
 
     /**
-     *  Quick, easy, and lazy logging withMessage
+     *  Quick, easy, and lazy logging method.
      */
     public static void log(String toLog) {
         SingleLineLogger.DEFAULT_INSTANCE.logger().info(toLog);
